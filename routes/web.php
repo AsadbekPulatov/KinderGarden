@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('retsep', \App\Http\Controllers\RetsepController::class)->middleware('zouch');
     Route::resource('warehouse', \App\Http\Controllers\WarehouseController::class)->middleware('zouch');
     Route::resource('foods', \App\Http\Controllers\FoodController::class)->middleware('zouch');
+    Route::resource('attendance', \App\Http\Controllers\AttendanceController::class);
+    Route::get('menulist', [\App\Http\Controllers\MenuListController::class, 'index'])->middleware('tarbiyachi')->name('menu_list');
+    Route::get('davomat',[\App\Http\Controllers\OshpazController::class,'index'])->middleware('oshpaz')->name('davomat');
+    Route::get('warehouselist',[\App\Http\Controllers\OshpazController::class,'store'])->middleware('oshpaz')->name('warehouse_list');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

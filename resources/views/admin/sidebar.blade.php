@@ -25,8 +25,8 @@
 
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('dashboard') }}"
-                       class="nav-link @if(request()->routeIs('dashboard')) active @endif ">
+                    <a href="{{ route('davomat') }}"
+                       class="nav-link @if(request()->routeIs('davomat')) active @endif ">
                         <i class="fa fa-users nav-icon"></i>
                         <p>Dashboard</p>
                     </a>
@@ -38,36 +38,22 @@
                         <p>Profile</p>
                     </a>
                 </li>
-{{--                @if(\Illuminate\Support\Facades\Auth::user()->role == 'student')--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="{{ route('stipendiya.index') }}"--}}
-{{--                           class="nav-link @if(request()->routeIs('stipendiya.index')) active @endif ">--}}
-{{--                            <i class="fa fa-users nav-icon"></i>--}}
-{{--                            <p>Stipendiya</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="{{ route('maqola.index') }}"--}}
-{{--                           class="nav-link @if(request()->routeIs('maqola.index')) active @endif ">--}}
-{{--                            <i class="fa fa-users nav-icon"></i>--}}
-{{--                            <p>Maqolalar</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="{{ route('projects.index') }}"--}}
-{{--                           class="nav-link @if(request()->routeIs('projects.index')) active @endif ">--}}
-{{--                            <i class="fa fa-users nav-icon"></i>--}}
-{{--                            <p>Proyektlar</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="{{ route('certificate.index') }}"--}}
-{{--                           class="nav-link @if(request()->routeIs('certificate.index')) active @endif ">--}}
-{{--                            <i class="fa fa-users nav-icon"></i>--}}
-{{--                            <p>Sertifikatlar</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                @endif--}}
+                @if(\Illuminate\Support\Facades\Auth::user()->role == 'tarbiyachi')
+                    <li class="nav-item">
+                        <a href="{{ route('attendance.index') }}"
+                           class="nav-link @if(request()->routeIs('attendance.index')) active @endif ">
+                            <i class="fa fa-users nav-icon"></i>
+                            <p>Davomat</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('menu_list') }}"
+                           class="nav-link @if(request()->routeIs('menu_list')) active @endif ">
+                            <i class="fa fa-users nav-icon"></i>
+                            <p>Menu</p>
+                        </a>
+                    </li>
+                @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->role == 'zouch')
                     <li class="nav-item">
                         <a href="{{ route('users.index') }}"
