@@ -84,6 +84,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('foods.index') }}"
+                           class="nav-link @if(request()->routeIs('foods.index')) active @endif ">
+                            <i class="fa fa-users nav-icon"></i>
+                            <p>Haftalik Ovqatlar</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('menu.index') }}"
                            class="nav-link @if(request()->routeIs('menu.index')) active @endif ">
                             <i class="fa fa-users nav-icon"></i>

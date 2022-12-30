@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('menu', \App\Http\Controllers\MenuController::class)->middleware('zouch');
     Route::resource('retsep', \App\Http\Controllers\RetsepController::class)->middleware('zouch');
     Route::resource('warehouse', \App\Http\Controllers\WarehouseController::class)->middleware('zouch');
+    Route::resource('foods', \App\Http\Controllers\FoodController::class)->middleware('zouch');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
