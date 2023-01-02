@@ -35,16 +35,20 @@
                                 <td>
                                     @foreach(\App\Models\Retsep::where('menu_id', $firm->menu_id)->get() as $item)
                                         <?php
-                                        $s[$item->warehouse->id]['id'] = $item->warehouse->id;
-                                        $s[$item->warehouse->id]['name'] = $item->warehouse->name;
-                                        $s[$item->warehouse->id]['count'] = 0;
+                                        if (isset($item->warehouse->id)) {
+                                            $s[$item->warehouse->id]['id'] = $item->warehouse->id;
+                                            $s[$item->warehouse->id]['name'] = $item->warehouse->name;
+                                            $s[$item->warehouse->id]['count'] = 0;
+                                        }
                                         ?>
                                     @endforeach
                                     @foreach(\App\Models\Retsep::where('menu_id', $firm->menu_id)->get() as $item)
-                                        <p class="btn btn-info">{{ $item->warehouse->name }}</p>
-                                        <?php $s[$item->warehouse->id]['count'] += $item->count * $child ?>
-                                        <p class="btn btn-info">{{ $item->count*$child.$item->warehouse->type }}</p>
-                                        <br>
+                                        @if(isset($item->warehouse->id))
+                                            <p class="btn btn-info">{{ $item->warehouse->name }}</p>
+                                            <?php $s[$item->warehouse->id]['count'] += $item->count * $child ?>
+                                            <p class="btn btn-info">{{ $item->count*$child.$item->warehouse->type }}</p>
+                                            <br>
+                                        @endif
                                     @endforeach
                                 </td>
                             </tr>
@@ -54,7 +58,8 @@
                     <form action="{{ route('warehouse_list') }}">
                         @foreach($s as $key => $item)
                             <input type="hidden" name="warehouse_id[]" value="{{ $item['id'] }}">
-                            <input readonly class="bg-info" type="text" name="warehouse_name[]" value="{{ $item['name'] }}">
+                            <input readonly class="bg-info" type="text" name="warehouse_name[]"
+                                   value="{{ $item['name'] }}">
                             <input
                                 @if(\App\Models\Warehouse::find($item['id'])->count < $item['count'])
                                     class="bg-danger"
@@ -67,7 +72,7 @@
                                        value="0"
                                    @else
                                        value="1"
-                                   @endif
+                                @endif
                             >
                         @endforeach
                         <button type="submit" class="btn btn-success">Saqlash</button>
