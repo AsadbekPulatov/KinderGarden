@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('groups.update',1)}}" method="post" id="edit_form">
+                <form action="{{route('groups.store')}}" method="post" id="edit_form">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" id="edit_id">

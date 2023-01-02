@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('warehouse.update',1)}}" method="post" id="edit_form">
+                <form action="{{route('warehouse.store')}}" method="post" id="edit_form">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" id="edit_id">
@@ -52,7 +52,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('warehouse.update',1)}}" method="post" id="edit_form">
+                <form action="{{route('warehouse.store')}}" method="post" id="edit_form2">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" id="add_id">

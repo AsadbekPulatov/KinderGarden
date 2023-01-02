@@ -76,6 +76,9 @@
         let firmes =@json($foods);
 
         function edit(id) {
+            let form = document.getElementById('edit_form').action+'/'+id;
+            document.getElementById('edit_form').action = form;
+            console.log(form);
             for (let i = 0; i < firmes.length; i++) {
                 if (id == firmes[i]["id"]) {
                     var firms = firmes[i];
