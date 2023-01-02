@@ -17,8 +17,8 @@ class OshpazController extends Controller
         $children_count = $children->count();
         $attendances_count = $attendances->count();
         $child = $children_count - $attendances_count;
-        $now = date('Y-m-d', strtotime(now()));
-        $foods = Food::where('date', $now)->get();
+        $now = date('w', strtotime(now()));
+        $foods = Food::where('week', $now)->get();
         return view('admin.oshpaz',compact('foods','child'));
     }
 
