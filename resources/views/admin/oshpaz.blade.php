@@ -31,7 +31,11 @@
                                     }
                                     ?>
                                 </td>
-                                <td>{{$firm->menu->name}} </td>
+                                <td>
+                                    @if(isset($firm->menu->name))
+                                        {{$firm->menu->name}}
+                                    @endif
+                                </td>
                                 <td>
                                     @foreach(\App\Models\Retsep::where('menu_id', $firm->menu_id)->get() as $item)
                                         <?php
