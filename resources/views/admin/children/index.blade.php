@@ -25,7 +25,11 @@
                                 <td>{{$loop->index+1}}</td>
                                 <td>{{$firm->name}}</td>
                                 <td>{{$firm->surname}}</td>
-                                <td>{{$firm->group->name}}</td>
+                                <td>
+                                    @if($firm->group->name)
+                                        {{$firm->group->name}}
+                                    @endif
+                                </td>
                                 <td>{{$firm->birth_date}}</td>
                                 <td class="d-flex">
 

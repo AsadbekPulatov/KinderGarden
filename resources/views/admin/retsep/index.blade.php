@@ -21,7 +21,11 @@
                         @foreach($retsep as $firm)
                             <tr>
                                 <td>{{$loop->index +1}}</td>
-                                <td>{{$firm->warehouse->name}}</td>
+                                <td>
+                                    @if($firm->warehouse->name)
+                                        {{$firm->warehouse->name}}
+                                    @endif
+                                </td>
                                 <td>{{$firm->count}}</td>
                                 <td class="d-flex">
 

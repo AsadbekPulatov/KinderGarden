@@ -23,17 +23,20 @@
                                 <td>{{$loop->index +1}}</td>
                                 <td>
                                     <?php
-                                        if ($firm->time == 1){
-                                            echo "Nonushta";
-                                        }elseif ($firm->time == 2){
-                                            echo "Tushlik";
-                                        }
-                                        else{
-                                            echo "Kechlik";
-                                        }
+                                    if ($firm->time == 1) {
+                                        echo "Nonushta";
+                                    } elseif ($firm->time == 2) {
+                                        echo "Tushlik";
+                                    } else {
+                                        echo "Kechlik";
+                                    }
                                     ?>
                                 </td>
-                                <td>{{$firm->menu->name}} </td>
+                                <td>
+                                    @if(isset($firm->menu->name))
+                                        {{$firm->menu->name}}
+                                    @endif
+                                </td>
                                 <td>{{$firm->date}} </td>
                                 <td class="d-flex">
 
