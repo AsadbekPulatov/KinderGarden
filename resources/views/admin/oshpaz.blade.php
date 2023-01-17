@@ -39,10 +39,16 @@
                                 <td>
                                     @foreach(\App\Models\Retsep::where('menu_id', $firm->menu_id)->get() as $item)
                                         @if(isset($item->warehouse->id))
-                                            <p class="btn btn-info">{{ $item->warehouse->name }}</p>
-                                            <p class="btn btn-info">{{ $item->count*$child.$item->warehouse->type }}</p>
-							  <p class="btn btn-success">{{ $item->count.$item->warehouse->type }}</p>
-                                            <br>
+                                            <div class="d-flex">
+                                                <p class="btn btn-info mr-2">{{ $item->warehouse->name }}</p>
+                                                <p class="btn btn-info mr-2">{{ $item->count*$child.$item->warehouse->type }}</p>
+                                                <p class="btn btn-success mr-2">{{ $item->count.$item->warehouse->type }}</p>
+                                                <form action="{{ route('warehouse_list') }}">
+                                                    <input type="hidden" name="warehouse_id" value="{{ $item['warehouse_id'] }}">
+                                                    <input type="hidden" value="{{ $item->count*$child }}" name="count">
+                                                    <button type="submit" class="btn btn-success">Qabul qilish</button>
+                                                </form>
+                                            </div>
                                         @endif
                                     @endforeach
                                 </td>
@@ -50,28 +56,28 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <form action="{{ route('warehouse_list') }}">
-                        @foreach($sum as $key => $item)
-                            <input type="hidden" name="warehouse_id[]" value="{{ $item['id'] }}">
-                            <input readonly class="bg-info" type="text" name="warehouse_name[]"
-                                   value="{{ $item['name'] }}">
-                            <input
-                                @if(\App\Models\Warehouse::find($item['id'])->count < $item['count'])
-                                    class="bg-danger"
-                                @else
-                                    class="bg-success"
-                                @endif
-                                type="text" readonly name="count[]" value="{{ $item['count'] }}">
-                            <input type="hidden" name="check[]"
-                                   @if(\App\Models\Warehouse::find($item['id'])->count < $item['count'])
-                                       value="0"
-                                   @else
-                                       value="1"
-                                @endif
-                            >
-                        @endforeach
-                        <button type="submit" class="btn btn-success">Saqlash</button>
-                    </form>
+{{--                    <form action="{{ route('warehouse_list') }}">--}}
+{{--                        @foreach($sum as $key => $item)--}}
+{{--                            <input type="hidden" name="warehouse_id[]" value="{{ $item['id'] }}">--}}
+{{--                            <input readonly class="bg-info" type="text" name="warehouse_name[]"--}}
+{{--                                   value="{{ $item['name'] }}">--}}
+{{--                            <input--}}
+{{--                                @if(\App\Models\Warehouse::find($item['id'])->count < $item['count'])--}}
+{{--                                    class="bg-danger"--}}
+{{--                                @else--}}
+{{--                                    class="bg-success"--}}
+{{--                                @endif--}}
+{{--                                type="text" readonly name="count[]" value="{{ $item['count'] }}">--}}
+{{--                            <input type="hidden" name="check[]"--}}
+{{--                                   @if(\App\Models\Warehouse::find($item['id'])->count < $item['count'])--}}
+{{--                                       value="0"--}}
+{{--                                   @else--}}
+{{--                                       value="1"--}}
+{{--                                @endif--}}
+{{--                            >--}}
+{{--                        @endforeach--}}
+{{--                        <button type="submit" class="btn btn-success">Saqlash</button>--}}
+{{--                    </form>--}}
                 </div>
             </div>
 

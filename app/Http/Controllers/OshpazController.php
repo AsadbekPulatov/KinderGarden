@@ -25,34 +25,31 @@ class OshpazController extends Controller
             $s[] = $food->id;
         }
         $retseps = Retsep::whereIn('menu_id', $s)->get();
-        $sum = [];
-        foreach ($retseps as $retsep) {
-            $sum[$retsep->warehouse_id]['count'] = 0;
-            $sum[$retsep->warehouse_id]['name'] = $retsep->warehouse->name;
-            $sum[$retsep->warehouse_id]['id'] = $retsep->warehouse->id;
-        }
-        foreach ($retseps as $retsep) {
-            $sum[$retsep->warehouse_id]['count'] += $retsep->count * $child;
-        }
+//        $sum = [];
+//        foreach ($retseps as $retsep) {
+//            $sum[$retsep->warehouse_id]['count'] = 0;
+//            $sum[$retsep->warehouse_id]['name'] = $retsep->warehouse->name;
+//            $sum[$retsep->warehouse_id]['id'] = $retsep->warehouse->id;
+//        }
+//        foreach ($retseps as $retsep) {
+//            $sum[$retsep->warehouse_id]['count'] += $retsep->count * $child;
+//        }
 //        dd($sum);
-        return view('admin.oshpaz', compact('foods', 'child','sum'));
+        return view('admin.oshpaz', compact('foods', 'child'));
     }
 
     public function store(Request $request)
     {
         $warehouse_id = $request['warehouse_id'];
-        $count_array = $request['count'];
-        $sum = array_sum($request->check);
-        $count = count($request->check);
-        if ($sum == $count) {
-            foreach ($warehouse_id as $key => $id) {
-                $warehouse = Warehouse::find($id);
-                $warehouse->count = $warehouse->count - $count_array[$key];
-                $warehouse->save();
-            }
-            return redirect()->back()->with('success', 'Mahsulot qabul qilindi');
-        } else {
-            return redirect()->back()->with('error', 'Mahsulot yetarli emas');
+        $count = $request['count'];
+        $warehouse = Warehouse::find($warehouse_id);
+
+        if ($warehouse->count < $count) {
+            return redirect()->back()->with('error', 'Siz kiritgan miqdor mavjud emas');
         }
+        $warehouse->count = $warehouse->count - $count;
+        $warehouse->save();
+        return redirect()->back()->with('success', 'Mahsulot qabul qilindi');
+
     }
 }
