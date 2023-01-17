@@ -41,6 +41,7 @@
                                         @if(isset($item->warehouse->id))
                                             <p class="btn btn-info">{{ $item->warehouse->name }}</p>
                                             <p class="btn btn-info">{{ $item->count*$child.$item->warehouse->type }}</p>
+							  <p class="btn btn-success">{{ $item->count.$item->warehouse->type }}</p>
                                             <br>
                                         @endif
                                     @endforeach
