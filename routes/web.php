@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('statistic', [StatisticController::class, 'index'])->name('statistic.index')->middleware('zouch');
     Route::resource('users', \App\Http\Controllers\UserController::class);
     Route::resource('children', \App\Http\Controllers\ChildrenController::class)->middleware('admin');
     Route::resource('groups', \App\Http\Controllers\GroupController::class)->middleware('zouch');

@@ -15,7 +15,8 @@
                 <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ route('dashboard') }}" class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->role }}</a>
+                <a href="{{ route('dashboard') }}"
+                   class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->role }}</a>
             </div>
         </div>
 
@@ -24,13 +25,24 @@
         <nav class="mt-2">
 
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a href="{{ route('davomat') }}"
-                       class="nav-link @if(request()->routeIs('davomat')) active @endif ">
-                        <i class="fa fa-users nav-icon"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+                @if(\Illuminate\Support\Facades\Auth::user()->role=="zouch")
+                    <li class="nav-item">
+                        <a href="{{ route('statistic.index') }}"
+                           class="nav-link @if(request()->routeIs('statistic.index')) active @endif ">
+                            <i class="fa fa-users nav-icon"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->role!="zouch")
+                    <li class="nav-item">
+                        <a href="{{ route('davomat') }}"
+                           class="nav-link @if(request()->routeIs('davomat')) active @endif ">
+                            <i class="fa fa-users nav-icon"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('profile.edit') }}"
                        class="nav-link @if(request()->routeIs('profile.edit')) active @endif ">
