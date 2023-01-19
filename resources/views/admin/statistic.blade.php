@@ -23,11 +23,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($outlays as $key => $firm)
+                        @foreach($outlays as $firm)
                             <tr>
                                 <td>{{$loop->index +1}}</td>
-                                <td>{{ $key }} </td>
-                                <td>{{ $firm }}</td>
+                                <td>{{ $firm['name'] }} </td>
+                                <td> <p class="btn btn-info">{{ $firm['count'] }} {{ $firm['type'] }}</p></td>
                             </tr>
                         @endforeach
                         </tbody>

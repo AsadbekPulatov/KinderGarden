@@ -54,7 +54,7 @@ class OshpazController extends Controller
         foreach ($warehouse_id as $key => $id) {
             $outlay = new Outlay();
             $outlay->date = $now;
-            $outlay->name = $request['warehouse_name'][$key];
+            $outlay->warehouse_id = $id;
             $outlay->count = $count_array[$key];
             $outlay->save();
         }

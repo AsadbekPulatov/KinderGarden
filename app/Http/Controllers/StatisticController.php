@@ -18,10 +18,12 @@ class StatisticController extends Controller
         }
         $sum = array();
         foreach ($outlays as $outlay){
-            $sum[$outlay->name] = 0;
+            $sum[$outlay->warehouse_id]['count'] = 0;
+            $sum[$outlay->warehouse_id]['name'] = $outlay->warehouse->name;
+            $sum[$outlay->warehouse_id]['type'] = $outlay->warehouse->type;
         }
         foreach ($outlays as $outlay){
-            $sum[$outlay->name] += $outlay->count;
+            $sum[$outlay->warehouse_id]['count'] += $outlay->count;
         }
         $outlays = $sum;
         return view('admin.statistic', compact('outlays'));

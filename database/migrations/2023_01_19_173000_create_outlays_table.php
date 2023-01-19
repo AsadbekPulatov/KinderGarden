@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('outlays', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->integer('warehouse_id');
             $table->integer('count');
             $table->date('date');
             $table->timestamps();
