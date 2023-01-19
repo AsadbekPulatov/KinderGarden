@@ -15,7 +15,7 @@ class OshpazController extends Controller
     public function index()
     {
         $children = Children::all();
-        $attendances = Attendance::all();
+        $attendances = Attendance::where('date', date('Y-m-d'))->get();
         $children_count = $children->count();
         $attendances_count = $attendances->count();
         $child = $children_count - $attendances_count;
